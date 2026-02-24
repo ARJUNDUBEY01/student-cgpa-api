@@ -72,7 +72,7 @@ Assuming the API is running at `http://localhost:3000`:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/student-cgpa-api.git
+   git clone https://github.com/ARJUNDUBEY01/student-cgpa-api.git
    cd student-cgpa-api
    ```
 
@@ -93,8 +93,7 @@ Assuming the API is running at `http://localhost:3000`:
 
 ## 🌐 Deployed Link
 
-> **Render**: [https://student-cgpa-api.onrender.com](https://student-cgpa-api.onrender.com)
-> *(Update this link after deployment)*
+> **Render**: [https://student-cgpa-api-1nx1.onrender.com](https://student-cgpa-api-1nx1.onrender.com)
 
 ---
 
