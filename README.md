@@ -99,8 +99,7 @@ Assuming the API is running at `http://localhost:3000`:
 
 ## 📬 Postman Documentation
 
-> **Postman Docs**: [https://documenter.getpostman.com/view/xxxxxx](https://documenter.getpostman.com/view/xxxxxx)
-> *(Update this link after publishing)*
+> **Postman Docs**: [https://documenter.getpostman.com/view/50839308/2sBXcGCyru](https://documenter.getpostman.com/view/50839308/2sBXcGCyru)
 
 ---
 
