@@ -1,0 +1,268 @@
+{
+    "info": {
+        "name": "Student CGPA API",
+        "description": "REST API to manage student CGPA records using an in-memory JSON database built with Express.js.\n\n## Base URL\n`https://student-cgpa-api.onrender.com`\n\n## Routes\n- 4 Static GET routes\n- 2 Dynamic GET routes\n\n## Tech Stack\n- Node.js\n- Express.js\n- CORS Middleware\n- In-memory JSON Array (No Database)",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "https://student-cgpa-api.onrender.com",
+            "type": "string"
+        }
+    ],
+    "item": [
+        {
+            "name": "Static Routes",
+            "description": "These are the 4 static GET routes that return fixed data endpoints.",
+            "item": [
+                {
+                    "name": "1. Get All Students",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/students",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "students"
+                            ]
+                        },
+                        "description": "Returns all student records from the in-memory database.\n\n**Expected Status Code:** `200 OK`\n\n**Sample Response:**\n```json\n[\n  {\n    \"id\": 1,\n    \"name\": \"Aarav Sharma\",\n    \"branch\": \"CSE\",\n    \"semester\": 8,\n    \"cgpa\": 9.3\n  },\n  ...\n]\n```"
+                    },
+                    "response": [
+                        {
+                            "name": "Success - All Students",
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Aarav Sharma\",\n    \"branch\": \"CSE\",\n    \"semester\": 8,\n    \"cgpa\": 9.3\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Ishita Verma\",\n    \"branch\": \"IT\",\n    \"semester\": 7,\n    \"cgpa\": 8.9\n  },\n  {\n    \"id\": 3,\n    \"name\": \"Rohan Kulkarni\",\n    \"branch\": \"ECE\",\n    \"semester\": 6,\n    \"cgpa\": 8.4\n  },\n  {\n    \"id\": 4,\n    \"name\": \"Meera Iyer\",\n    \"branch\": \"CSE\",\n    \"semester\": 8,\n    \"cgpa\": 9.1\n  },\n  {\n    \"id\": 5,\n    \"name\": \"Kunal Deshmukh\",\n    \"branch\": \"IT\",\n    \"semester\": 5,\n    \"cgpa\": 7.8\n  },\n  {\n    \"id\": 6,\n    \"name\": \"Ananya Reddy\",\n    \"branch\": \"CSE\",\n    \"semester\": 6,\n    \"cgpa\": 8.7\n  },\n  {\n    \"id\": 7,\n    \"name\": \"Vikram Patil\",\n    \"branch\": \"ECE\",\n    \"semester\": 7,\n    \"cgpa\": 8.2\n  },\n  {\n    \"id\": 8,\n    \"name\": \"Priyanka Nair\",\n    \"branch\": \"AI\",\n    \"semester\": 4,\n    \"cgpa\": 8.8\n  },\n  {\n    \"id\": 9,\n    \"name\": \"Harsh Mehta\",\n    \"branch\": \"Data Science\",\n    \"semester\": 5,\n    \"cgpa\": 8.0\n  },\n  {\n    \"id\": 10,\n    \"name\": \"Neha Gupta\",\n    \"branch\": \"CSE\",\n    \"semester\": 6,\n    \"cgpa\": 7.9\n  }\n]"
+                        }
+                    ]
+                },
+                {
+                    "name": "2. Get Topper",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/students/topper",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "students",
+                                "topper"
+                            ]
+                        },
+                        "description": "Returns the student with the highest CGPA.\n\n**Expected Status Code:** `200 OK`\n\n**Core Concept:** Array `reduce()` logic to find maximum CGPA.\n\n**Sample Response:**\n```json\n{\n  \"id\": 1,\n  \"name\": \"Aarav Sharma\",\n  \"branch\": \"CSE\",\n  \"semester\": 8,\n  \"cgpa\": 9.3\n}\n```"
+                    },
+                    "response": [
+                        {
+                            "name": "Success - Topper Found",
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"id\": 1,\n  \"name\": \"Aarav Sharma\",\n  \"branch\": \"CSE\",\n  \"semester\": 8,\n  \"cgpa\": 9.3\n}"
+                        },
+                        {
+                            "name": "Error - No Students",
+                            "status": "Not Found",
+                            "code": 404,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"message\": \"No students found\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "3. Get Average CGPA",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/students/average",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "students",
+                                "average"
+                            ]
+                        },
+                        "description": "Returns the average CGPA of all students.\n\n**Expected Status Code:** `200 OK`\n\n**Core Concept:** Aggregation using `reduce()` and data transformation.\n\n**Sample Response:**\n```json\n{\n  \"averageCGPA\": 8.51\n}\n```"
+                    },
+                    "response": [
+                        {
+                            "name": "Success - Average CGPA",
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"averageCGPA\": 8.51\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "4. Get Student Count",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/students/count",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "students",
+                                "count"
+                            ]
+                        },
+                        "description": "Returns the total number of students in the database.\n\n**Expected Status Code:** `200 OK`\n\n**Core Concept:** Basic array `.length` operation.\n\n**Sample Response:**\n```json\n{\n  \"totalStudents\": 10\n}\n```"
+                    },
+                    "response": [
+                        {
+                            "name": "Success - Student Count",
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"totalStudents\": 10\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Dynamic Routes",
+            "description": "These are the 2 dynamic GET routes that accept URL parameters.",
+            "item": [
+                {
+                    "name": "5. Get Student by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/students/3",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "students",
+                                "3"
+                            ]
+                        },
+                        "description": "Returns a single student by their unique ID.\n\n**Expected Status Codes:**\n- `200 OK` — Student found\n- `400 Bad Request` — Invalid ID (not a number)\n- `404 Not Found` — Student with given ID does not exist\n\n**Core Concept:** Route parameters (`req.params`), `Array.find()`, error handling.\n\n**Sample Request:** `GET /students/3`\n\n**Sample Response:**\n```json\n{\n  \"id\": 3,\n  \"name\": \"Rohan Kulkarni\",\n  \"branch\": \"ECE\",\n  \"semester\": 6,\n  \"cgpa\": 8.4\n}\n```"
+                    },
+                    "response": [
+                        {
+                            "name": "Success - Student Found",
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"id\": 3,\n  \"name\": \"Rohan Kulkarni\",\n  \"branch\": \"ECE\",\n  \"semester\": 6,\n  \"cgpa\": 8.4\n}"
+                        },
+                        {
+                            "name": "Error - Student Not Found",
+                            "status": "Not Found",
+                            "code": 404,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"message\": \"Student with ID 99 not found\"\n}"
+                        },
+                        {
+                            "name": "Error - Invalid ID",
+                            "status": "Bad Request",
+                            "code": 400,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"message\": \"Invalid student ID. ID must be a number.\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "6. Get Students by Branch",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/students/branch/CSE",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "students",
+                                "branch",
+                                "CSE"
+                            ]
+                        },
+                        "description": "Returns all students from a specific branch.\n\n**Expected Status Code:** `200 OK`\n\n**Core Concept:** Filtering with `Array.filter()`, case-insensitive matching.\n\n**Design Choice:** Returns an empty array `[]` with `200 OK` if no students match the branch. The route is valid — the branch simply has no records. Returning 404 would imply the route itself doesn't exist.\n\n**Available Branches:** CSE, IT, ECE, AI, Data Science\n\n**Sample Request:** `GET /students/branch/CSE`\n\n**Sample Response:**\n```json\n[\n  { \"id\": 1, \"name\": \"Aarav Sharma\", \"branch\": \"CSE\", \"semester\": 8, \"cgpa\": 9.3 },\n  { \"id\": 4, \"name\": \"Meera Iyer\", \"branch\": \"CSE\", \"semester\": 8, \"cgpa\": 9.1 },\n  { \"id\": 6, \"name\": \"Ananya Reddy\", \"branch\": \"CSE\", \"semester\": 6, \"cgpa\": 8.7 },\n  { \"id\": 10, \"name\": \"Neha Gupta\", \"branch\": \"CSE\", \"semester\": 6, \"cgpa\": 7.9 }\n]\n```"
+                    },
+                    "response": [
+                        {
+                            "name": "Success - CSE Students",
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Aarav Sharma\",\n    \"branch\": \"CSE\",\n    \"semester\": 8,\n    \"cgpa\": 9.3\n  },\n  {\n    \"id\": 4,\n    \"name\": \"Meera Iyer\",\n    \"branch\": \"CSE\",\n    \"semester\": 8,\n    \"cgpa\": 9.1\n  },\n  {\n    \"id\": 6,\n    \"name\": \"Ananya Reddy\",\n    \"branch\": \"CSE\",\n    \"semester\": 6,\n    \"cgpa\": 8.7\n  },\n  {\n    \"id\": 10,\n    \"name\": \"Neha Gupta\",\n    \"branch\": \"CSE\",\n    \"semester\": 6,\n    \"cgpa\": 7.9\n  }\n]"
+                        },
+                        {
+                            "name": "Success - Empty Branch",
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "[]"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
